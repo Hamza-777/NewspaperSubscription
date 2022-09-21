@@ -1,0 +1,58 @@
+﻿@model NewspaperSubscription.Models.NewsPaper
+
+@{
+    ViewData["Title"] = "AddNewNewspaper";
+}
+
+<h1>AddNewNewspaper</h1>
+
+<h4>NewsPaper</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddNewNewspaper">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Newspapername" class="control-label"></label>
+                <input asp-for="Newspapername" class="form-control" />
+                <span asp-validation-for="Newspapername" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Newspaperprice" class="control-label"></label>
+                <input asp-for="Newspaperprice" class="form-control" />
+                <span asp-validation-for="Newspaperprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weeklysubscription" class="control-label"></label>
+                <input asp-for="Weeklysubscription" class="form-control" />
+                <span asp-validation-for="Weeklysubscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monthlysubscription" class="control-label"></label>
+                <input asp-for="Monthlysubscription" class="form-control" />
+                <span asp-validation-for="Monthlysubscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yearlysubscription" class="control-label"></label>
+                <input asp-for="Yearlysubscription" class="form-control" />
+                <span asp-validation-for="Yearlysubscription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Newspaperlanguage" class="control-label"></label>
+                <input asp-for="Newspaperlanguage" class="form-control" />
+                <span asp-validation-for="Newspaperlanguage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

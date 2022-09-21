@@ -1,0 +1,32 @@
+﻿@model NewspaperSubscription.Models.Vendor
+
+@{
+    ViewData["Title"] = "VendorRegister";
+}
+
+    <div class="form-container">
+        <h1 class="text-center text-capitalize text-light">Vendor Register</h1>
+        <form asp-action="VendorRegister" class="auth-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Vendorname" class="control-label"></label>
+                <input asp-for="Vendorname" class="form-control" placeholder="Name" />
+                <span asp-validation-for="Vendorname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vendorcity" class="control-label"></label>
+                <select asp-for="Vendorcity" class ="form-control" asp-items="ViewBag.Vendorcity"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Next" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

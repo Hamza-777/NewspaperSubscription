@@ -14,5 +14,82 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-image: url("../images/paperack.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: brightness(75%);
 }
+
+.options-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-block-start: 5rem;
+}
+
+.card-option {
+    min-width: 20rem;
+    min-height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 15% 25% / 20% 11%;
+    color: #fff;
+    transition: all ease-in-out 300ms;
+}
+
+.card-option:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    font-size: 2rem;
+}
+
+.form-container {
+    margin-inline: auto;
+    width: 50%;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-block-start: 10rem;
+}
+
+.auth-form {
+    width: 100%;
+}
+
+.auth-form > .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.auth-form > .form-group > label {
+    color: #fff;
+}
+
+    .auth-form > .form-group > input[type="text"],
+    .auth-form > .form-group > input[type="password"],
+    .auth-form > .form-group > select,
+    .auth-form > .form-group > input[type="submit"] {
+        width: 100%;
+        background-color: transparent;
+        color: #fff;
+    }
+
+    .auth-form > .form-group > input[type="submit"] {
+        margin-block: 2rem;
+        border-color: #fff;
+        border-radius: 2rem;
+        outline: none;
+    }

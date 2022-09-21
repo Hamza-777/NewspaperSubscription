@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NewspaperSubscription.Models.Customer>
+
+@{
+    ViewData["Title"] = "GetAllCustomers";
+}
+
+<h1>GetAllCustomers</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customeraddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomercityNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customeraddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomercityNavigation.Cityid)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Customerid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Customerid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Customerid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
