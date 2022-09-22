@@ -40,16 +40,15 @@
                 @Html.DisplayFor(modelItem => item.Subscriptionstartdate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerNavigation.Customerid)
+                @Html.DisplayFor(modelItem => item.CustomerNavigation.Customername)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NewspaperNavigation.Newspaperid)
+                @Html.DisplayFor(modelItem => item.NewspaperNavigation.Newspapername)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorNavigation.Vendorid)
+                @Html.DisplayFor(modelItem => item.VendorNavigation.Vendorname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Subscriptionid">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Subscriptionid">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Subscriptionid">Delete</a>
             </td>

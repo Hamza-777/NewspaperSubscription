@@ -6,10 +6,7 @@
 
 <h1>GetAllCustomers</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table ">
     <thead>
         <tr>
             <th>
@@ -19,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Customeraddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustomercityNavigation)
+                Customer City
             </th>
             <th></th>
         </tr>
@@ -34,12 +31,10 @@
                 @Html.DisplayFor(modelItem => item.Customeraddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomercityNavigation.Cityid)
+                @Html.DisplayFor(modelItem => item.CustomercityNavigation.Cityname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Customerid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Customerid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Customerid">Delete</a>
+                <a asp-action="CustomerDetails" asp-route-id="@item.Customerid">Details</a>
             </td>
         </tr>
 }

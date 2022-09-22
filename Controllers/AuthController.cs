@@ -33,7 +33,7 @@ namespace NewspaperSubscription.Controllers
             {
                 HttpContext.Session.SetString("LoggedInPersonnel", "Admin");
                 HttpContext.Session.SetString("Username", admin.Username);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Admin");
             } else
             {
                 return View();
@@ -56,7 +56,7 @@ namespace NewspaperSubscription.Controllers
                 db.SaveChanges();
                 return RedirectToAction("VendorCredentialsRegister", "Auth");
             }
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public IActionResult VendorCredentialsRegister()
@@ -74,7 +74,7 @@ namespace NewspaperSubscription.Controllers
                 db.VendorCredentials.Add(vc);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetAllSubscriptions", "Vendor");
         }
 
         public IActionResult VendorLogin()
@@ -91,7 +91,7 @@ namespace NewspaperSubscription.Controllers
             {
                 HttpContext.Session.SetString("LoggedInPersonnel", "Vendor");
                 HttpContext.Session.SetString("Username", ven.Username);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("GetAllSubscriptions", "Vendor");
             }
             else
             {
@@ -133,7 +133,7 @@ namespace NewspaperSubscription.Controllers
                 db.CustomerCredentials.Add(cc);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Customer");
         }
 
         public IActionResult CustomerLogin()
@@ -150,7 +150,7 @@ namespace NewspaperSubscription.Controllers
             {
                 HttpContext.Session.SetString("LoggedInPersonnel", "Customer");
                 HttpContext.Session.SetString("Username", cus.Username);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Customer");
             }
             else
             {

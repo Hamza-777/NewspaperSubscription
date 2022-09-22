@@ -46,7 +46,7 @@ body {
 
 .card-option:hover {
     background-color: rgba(0, 0, 0, 0.9);
-    font-size: 2rem;
+    font-size: 1.25rem;
 }
 
 .form-container {

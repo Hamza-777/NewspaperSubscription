@@ -6,9 +6,6 @@
 
 <h1>GetAllVendors</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -16,7 +13,7 @@
                 @Html.DisplayNameFor(model => model.Vendorname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorcityNavigation)
+                Vendor City
             </th>
             <th></th>
         </tr>
@@ -28,12 +25,10 @@
                 @Html.DisplayFor(modelItem => item.Vendorname)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorcityNavigation.Cityid)
+                @Html.DisplayFor(modelItem => item.VendorcityNavigation.Cityname)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Vendorid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Vendorid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Vendorid">Delete</a>
+                <a asp-action="VendorDetails" asp-route-id="@item.Vendorid">Details</a>
             </td>
         </tr>
 }

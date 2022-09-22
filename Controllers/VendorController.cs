@@ -11,10 +11,6 @@ namespace NewspaperSubscription.Controllers
         {
             db = _db;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         public IActionResult GetAllSubscriptions()
         {
