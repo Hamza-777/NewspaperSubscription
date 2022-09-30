@@ -17,7 +17,6 @@ namespace NewspaperSubscription.Models
         [DataType(DataType.Password)]
         public string Password { get; set; } = null!;
 
-        [Compare("Password", ErrorMessage = "Entered passwords do not match")]
         [DataType(DataType.Password)]
         [NotMapped]
         public string ConfirmPassword { get; set; } = null!;

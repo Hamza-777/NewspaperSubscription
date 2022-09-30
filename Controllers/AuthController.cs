@@ -71,10 +71,19 @@ namespace NewspaperSubscription.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString("LoggedInPersonnel", "Vendor");
-                HttpContext.Session.SetString("Username", vc.Username);
-                db.VendorCredentials.Add(vc);
-                db.SaveChanges();
+                if(vc.Password == vc.ConfirmPassword)
+                {
+                    HttpContext.Session.SetString("LoggedInPersonnel", "Vendor");
+                    HttpContext.Session.SetString("Username", vc.Username);
+                    db.VendorCredentials.Add(vc);
+                    db.SaveChanges();
+                } else
+                {
+                    TempData["Error"] = "Passwords do not match!";
+                    var result = db.Vendors.ToList().TakeLast(1);
+                    ViewBag.Vendor = new SelectList(result, "Vendorid", "Vendorname");
+                    return View(vc);
+                }
             }
             return RedirectToAction("Index");
         }
@@ -133,10 +142,19 @@ namespace NewspaperSubscription.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpContext.Session.SetString("LoggedInPersonnel", "Customer");
-                HttpContext.Session.SetString("Username", cc.Username);
-                db.CustomerCredentials.Add(cc);
-                db.SaveChanges();
+                if(cc.Password == cc.ConfirmPassword)
+                {
+                    HttpContext.Session.SetString("LoggedInPersonnel", "Customer");
+                    HttpContext.Session.SetString("Username", cc.Username);
+                    db.CustomerCredentials.Add(cc);
+                    db.SaveChanges();
+                } else
+                {
+                    TempData["Error"] = "Passwords do not match!";
+                    var result = db.Customers.ToList().TakeLast(1);
+                    ViewBag.Customer = new SelectList(result, "Customerid", "Customername");
+                    return View(cc);
+                }
             }
             return RedirectToAction("Index");
         }
