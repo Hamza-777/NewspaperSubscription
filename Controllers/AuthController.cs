@@ -71,10 +71,12 @@ namespace NewspaperSubscription.Controllers
         {
             if (ModelState.IsValid)
             {
+                HttpContext.Session.SetString("LoggedInPersonnel", "Vendor");
+                HttpContext.Session.SetString("Username", vc.Username);
                 db.VendorCredentials.Add(vc);
                 db.SaveChanges();
             }
-            return RedirectToAction("GetAllSubscriptions", "Vendor");
+            return RedirectToAction("Index");
         }
 
         public IActionResult VendorLogin()
@@ -85,12 +87,13 @@ namespace NewspaperSubscription.Controllers
         [HttpPost]
         public IActionResult VendorLogin(VendorCredential ven)
         {
-            var result = (from i in db.VendorCredentials where i.Username == ven.Username && i.Password == ven.Password select i).SingleOrDefault();
+            var result = (from i in db.VendorCredentials where i.Username == ven.Username && i.Password == ven.Password select i).Include(x => x.VendorNavigation).SingleOrDefault();
 
             if (result != null)
             {
                 HttpContext.Session.SetString("LoggedInPersonnel", "Vendor");
-                HttpContext.Session.SetString("Username", ven.Username);
+                HttpContext.Session.SetString("Username", result.Username);
+                HttpContext.Session.SetInt32("VendorId", (int)result.VendorNavigation.Vendorid);
                 return RedirectToAction("GetAllSubscriptions", "Vendor");
             }
             else
@@ -120,7 +123,7 @@ namespace NewspaperSubscription.Controllers
 
         public IActionResult CustomerCredentialsRegister()
         {
-            var result = db.Vendors.ToList().TakeLast(1);
+            var result = db.Customers.ToList().TakeLast(1);
             ViewBag.Customer = new SelectList(result, "Customerid", "Customername");
             return View();
         }
@@ -130,10 +133,12 @@ namespace NewspaperSubscription.Controllers
         {
             if (ModelState.IsValid)
             {
+                HttpContext.Session.SetString("LoggedInPersonnel", "Customer");
+                HttpContext.Session.SetString("Username", cc.Username);
                 db.CustomerCredentials.Add(cc);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("Index");
         }
 
         public IActionResult CustomerLogin()
@@ -144,18 +149,25 @@ namespace NewspaperSubscription.Controllers
         [HttpPost]
         public IActionResult CustomerLogin(CustomerCredential cus)
         {
-            var result = (from i in db.CustomerCredentials where i.Username == cus.Username && i.Password == cus.Password select i).SingleOrDefault();
+            var result = (from i in db.CustomerCredentials where i.Username == cus.Username && i.Password == cus.Password select i).Include(x => x.CustomerNavigation).SingleOrDefault();
 
             if (result != null)
             {
                 HttpContext.Session.SetString("LoggedInPersonnel", "Customer");
-                HttpContext.Session.SetString("Username", cus.Username);
-                return RedirectToAction("Index", "Customer");
+                HttpContext.Session.SetString("Username", result.Username);
+                HttpContext.Session.SetInt32("CustomerId", (int)result.CustomerNavigation.Customerid);
+                return RedirectToAction("GetAllNewspapers", "Customer");
             }
             else
             {
                 return View();
             }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Auth");
         }
     }
 }

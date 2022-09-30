@@ -15,6 +15,8 @@ create table Cities (
 	citystate varchar(30) not null
 )
 
+insert into Cities values ('Mumbai', 'Maharashtra'), ('Chennai', 'TamilNadu')
+
 create table Vendors (
 	vendorid int identity(234, 3) not null primary key,
 	vendorname varchar(50) not null,
@@ -59,4 +61,4 @@ create table Subscriptions (
 	vendor int foreign key references Vendors(vendorid)
 )
 
-select * from Admin
+select * from Subscriptions

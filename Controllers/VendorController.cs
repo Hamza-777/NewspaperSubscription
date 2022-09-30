@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewspaperSubscription.Models;
 
 namespace NewspaperSubscription.Controllers
@@ -14,7 +15,15 @@ namespace NewspaperSubscription.Controllers
 
         public IActionResult GetAllSubscriptions()
         {
-            return View();
+            var result = db.Subscriptions.Include(x => x.VendorNavigation).Include(x => x.CustomerNavigation).Include(x => x.NewspaperNavigation).Where(x => x.VendorNavigation.Vendorid == (int)HttpContext.Session.GetInt32("VendorId")).ToList();
+            if (HttpContext.Session.GetString("LoggedInPersonnel") == null)
+            {
+                return RedirectToAction("Index", "Auth");
+            }
+            else
+            {
+                return View(result);
+            }
         }
     }
 }

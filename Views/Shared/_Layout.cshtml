@@ -20,9 +20,30 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Auth" asp-action="Index">Home</a>
-                        </li>
+                        @if(Context.Session.GetString("LoggedInPersonnel") == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Auth" asp-action="Index">Home</a>
+                            </li>
+                        } else
+                        {
+                            @if(Context.Session.GetString("LoggedInPersonnel") == "Admin")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="AddNewNewspaper">Add New Newspaper</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="GetAllCustomers">Customers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Admin" asp-action="GetAllVendors">Vendors</a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Auth" asp-action="Logout">Logout</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

@@ -4,6 +4,7 @@ using NewspaperSubscription.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<NewsSubDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();

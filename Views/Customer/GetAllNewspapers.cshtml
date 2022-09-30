@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NewspaperSubscription.Models.NewsPaper>
+
+@{
+    ViewData["Title"] = "GetAllNewspapers";
+}
+
+<h1>Newspapers</h1>
+
+<table class="table dark-background">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Newspapername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Newspaperprice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weeklysubscription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monthlysubscription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yearlysubscription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Newspaperlanguage)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Newspapername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Newspaperprice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weeklysubscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monthlysubscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yearlysubscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Newspaperlanguage)
+            </td>
+            <td>
+                <a asp-action="SubscribeToANewspaper" asp-route-id="@item.Newspaperid">Subscribe</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
